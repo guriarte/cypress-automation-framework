@@ -1,5 +1,6 @@
 import assert from '../../support/assertions/pageAssertions';
 import { AccountPage } from '../../support/pages/accountPage';
+import { CheckoutPage } from '../../support/pages/checkoutPage';
 import { HeaderComponent } from '../../support/pages/header';
 import { HomePage } from '../../support/pages/homePage';
 import { LoginPage } from '../../support/pages/loginPage';
@@ -11,30 +12,11 @@ describe('Purchase Flow Tests', () => {
     const loginPage = LoginPage().pageActions;
     const homePage = HomePage().pageActions;
     const productPage = ProductPage().pageActions;
-    const accountPage = AccountPage().pageActions;
-    const accountPageSelectors = AccountPage().selectors;
+    const { pageActions: accountPage, selectors: accountPageSelectors } =
+      AccountPage();
+    const checkoutPage = CheckoutPage().pageActions;
+    cy.fixture('users').as('usersJson');
     cy.visit('/');
-    /*
-    cy.header()
-      .clickSignInButton()
-      .loginPage()
-      .loginUI('customer@practicesoftwaretesting.com', 'welcome01')
-      .header()
-      .clickLogo()
-      .homePage()
-      .searchForProduct('Pliers')
-      .clickOnProduct('Combination Pliers')
-      .productPage()
-      .clickIncreaseQuantityButton()
-      .clickIncreaseQuantityButton()
-      .clickAddToCartButton()
-      // .contains('Product added to shopping cart')
-      // .should('be.visible')
-      // .click()
-      .header()
-      .clickShoppingCartButton();
-*/
-
     header.clickSignInButton();
     loginPage.loginUI('customer@practicesoftwaretesting.com', 'welcome01');
     assert.elementIsVisible(accountPageSelectors.profileButton);
@@ -46,11 +28,12 @@ describe('Purchase Flow Tests', () => {
       .clickAddToCartButton();
     header.clickShoppingCartButton();
 
-    cy.get('table > tbody')
-      .children(':contains("Combination Pliers")')
-      .find('input')
-      .clear()
-      .type('1');
+    // cy.get('table > tbody')
+    //   .children(':contains("Combination Pliers")')
+    //   .find('input')
+    //   .clear()
+    //   .type('1');
+    checkoutPage.setQuantityForProduct('Combination Pliers', 1);
     cy.get('[data-test="proceed-1"]').click();
     cy.get('[data-test="proceed-2"]').click();
     cy.get('[data-test="address"]').clear().type('Fake Address 123');
