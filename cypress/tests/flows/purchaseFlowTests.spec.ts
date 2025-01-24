@@ -5,17 +5,21 @@ import { HeaderComponent } from '../../support/pages/header';
 import { HomePage } from '../../support/pages/homePage';
 import { LoginPage } from '../../support/pages/loginPage';
 import { ProductPage } from '../../support/pages/productPage';
+import rawBillingData from '../../fixtures/billingAddress.json'
+import { BillingData } from '../../support/types/billingInfo'
+
+const billingAddressData = rawBillingData as BillingData;
 
 describe('Purchase Flow Tests', () => {
   it('Purchase Flow Happy Path', () => {
     const header = HeaderComponent().pageActions;
     const loginPage = LoginPage().pageActions;
     const homePage = HomePage().pageActions;
-    const productPage = ProductPage().pageActions;
+    const checkoutPage = CheckoutPage().pageActions;
+
+    const { pageActions: productPage, selectors: productPageSelectors } = ProductPage();
     const { pageActions: accountPage, selectors: accountPageSelectors } =
       AccountPage();
-    const checkoutPage = CheckoutPage().pageActions;
-    cy.fixture('users').as('usersJson');
     cy.visit('/');
     header.clickSignInButton();
     loginPage.loginUI('customer@practicesoftwaretesting.com', 'welcome01');
@@ -25,22 +29,11 @@ describe('Purchase Flow Tests', () => {
     productPage
       .clickIncreaseQuantityButton()
       .clickIncreaseQuantityButton()
-      .clickAddToCartButton();
+      .clickAddToCartButton()
+      .clickAddedToCartModal(); // click it so it doesn't cover the shoppingCartButton
     header.clickShoppingCartButton();
-
-    // cy.get('table > tbody')
-    //   .children(':contains("Combination Pliers")')
-    //   .find('input')
-    //   .clear()
-    //   .type('1');
-    checkoutPage.setQuantityForProduct('Combination Pliers', 1);
-    cy.get('[data-test="proceed-1"]').click();
-    cy.get('[data-test="proceed-2"]').click();
-    cy.get('[data-test="address"]').clear().type('Fake Address 123');
-    cy.get('[data-test="city"]').clear().type('Fake City');
-    cy.get('[data-test="state"]').clear().type('Fake State');
-    cy.get('[data-test="country"]').clear().type('Fake Country');
-    cy.get('[data-test="postcode"]').clear().type('12345');
+    checkoutPage.setQuantityForProduct('Combination Pliers', 1).clickProceedToCheckoutButtonInStepOne().clickProceedToCheckoutButtonInStepTwo();
+    checkoutPage.fillBillingInfoForm(billingAddressData);
     cy.get('[data-test="proceed-3"]').click();
     cy.get('[data-test="payment-method"]').select('Credit Card');
     cy.get('[data-test="credit_card_number"]')
