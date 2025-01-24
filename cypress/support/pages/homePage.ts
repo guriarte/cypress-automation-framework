@@ -5,6 +5,11 @@ export const HomePage = () => {
   };
 
   const pageActions = {
+    visit() {
+      cy.visit('/');
+      return pageActions;
+    },
+
     searchForProduct(productName: string) {
       cy.get(selectors.productSearchInputBox).type(`${productName}{enter}`);
       return pageActions;

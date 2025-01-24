@@ -1,15 +1,22 @@
-import { BillingData } from "../types/billingInfo";
+import { BillingData } from '../types/billingInfo';
+import { CreditCardInfo } from '../types/creditCardInfo';
 
 export const CheckoutPage = () => {
   const selectors = {
     productTable: 'table > tbody',
     proceedToCheckoutButtonInStepOne: '[data-test="proceed-1"]',
     proceedToCheckoutButtonInStepTwo: '[data-test="proceed-2"]',
+    proceedToCheckoutButtonInStepThree: '[data-test="proceed-3"]',
     addressTextField: '[data-test="address"]',
     cityTextField: '[data-test="city"]',
     stateTextField: '[data-test="state"]',
     countryTextField: '[data-test="country"]',
     postcodeTextField: '[data-test="postcode"]',
+    paymentMethodDropdown: '[data-test="payment-method"]',
+    creditCardNumberTextField: '[data-test="credit_card_number"]',
+    creditCardExpirationDateTextField: '[data-test="expiration_date"]',
+    creditCardCVV: '[data-test="cvv"]',
+    creditCardName: '[data-test="card_holder_name"]',
   };
 
   const pageActions = {
@@ -20,7 +27,7 @@ export const CheckoutPage = () => {
         .clear()
         .type(quantity.toString());
 
-        return pageActions;
+      return pageActions;
     },
 
     clickProceedToCheckoutButtonInStepOne: () => {
@@ -33,6 +40,16 @@ export const CheckoutPage = () => {
       return pageActions;
     },
 
+    clickProceedToCheckoutButtonInStepThree: () => {
+      cy.get(selectors.proceedToCheckoutButtonInStepThree).click();
+      return pageActions;
+    },
+
+    clickConfirmButton: () => {
+      cy.get('[data-test="finish"]').click();
+      return pageActions;
+    },
+
     fillBillingInfoForm(billingData: BillingData) {
       cy.get(selectors.addressTextField).clear().type(billingData.address);
       cy.get(selectors.cityTextField).clear().type(billingData.city);
@@ -40,7 +57,27 @@ export const CheckoutPage = () => {
       cy.get(selectors.countryTextField).clear().type(billingData.country);
       cy.get(selectors.postcodeTextField).clear().type(billingData.postcode);
       return pageActions;
-    }
+    },
+
+    selectPaymentMethod(paymentMethod: string) {
+      cy.get(selectors.paymentMethodDropdown).select(paymentMethod);
+      return pageActions;
+    },
+
+    fillCreditCardInfoForm(creditCardData: CreditCardInfo) {
+      cy.get(selectors.creditCardNumberTextField)
+        .clear()
+        .type(creditCardData.creditCardNumber);
+      cy.get(selectors.creditCardExpirationDateTextField)
+        .clear()
+        .type(creditCardData.expirationDate);
+      cy.get(selectors.creditCardCVV).clear().type(creditCardData.cvv);
+      cy.get(selectors.creditCardName)
+        .clear()
+        .type(creditCardData.cardHolderName);
+
+      return pageActions;
+    },
   };
 
   return { selectors, pageActions };
