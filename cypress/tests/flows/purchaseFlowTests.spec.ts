@@ -9,22 +9,24 @@ import rawBillingData from '../../fixtures/billingAddress.json';
 import { BillingData } from '../../support/types/billingInfo';
 import rawCreditCardData from '../../fixtures/creditCardInfo.json';
 import { CreditCardInfo } from '../../support/types/creditCardInfo';
+import userCredentials from '../../fixtures/userCredentials.json';
 
 const billingAddressData = rawBillingData as BillingData;
 const creditCardData = rawCreditCardData as CreditCardInfo;
+const customerUserEmail = userCredentials.customerUser.email;
+const customerUserPassword = Cypress.env('CUSTOMERUSER_PASSWORD');
+const { pageActions: header } = HeaderComponent();
+const { pageActions: loginPage } = LoginPage();
+const { pageActions: homePage } = HomePage();
+const { pageActions: productPage } = ProductPage();
+const { selectors: accountPageSelectors } = AccountPage();
+const { pageActions: checkoutPage } = CheckoutPage();
 
 describe('Purchase Flow Tests', () => {
   it('Purchase Flow Happy Path', () => {
-    const { pageActions: header } = HeaderComponent();
-    const { pageActions: loginPage } = LoginPage();
-    const { pageActions: homePage } = HomePage();
-    const { pageActions: productPage } = ProductPage();
-    const { selectors: accountPageSelectors } = AccountPage();
-    const { pageActions: checkoutPage } = CheckoutPage();
-
     homePage.visit();
     header.clickSignInButton();
-    loginPage.loginUI('customer@practicesoftwaretesting.com', 'welcome01');
+    loginPage.loginUI(customerUserEmail, customerUserPassword);
     assert.elementIsVisible(accountPageSelectors.profileButton);
     header.clickLogo();
     homePage.searchForProduct('Pliers').clickOnProduct('Combination Pliers');
