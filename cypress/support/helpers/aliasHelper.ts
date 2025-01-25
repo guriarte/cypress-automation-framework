@@ -1,4 +1,4 @@
-const textHelper = {
+const aliasHelper = {
   saveInvoiceNumberInAliasFromSelector: (selector: string) => {
     cy.get(selector)
       .invoke('text')
@@ -13,4 +13,4 @@ const textHelper = {
   },
 };
 
-export default textHelper;
+export default aliasHelper;

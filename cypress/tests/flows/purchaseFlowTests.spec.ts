@@ -1,4 +1,4 @@
-import assert from '../../support/assertions/pageAssertions';
+import assert from '../../support/helpers/pageAssertions';
 import { AccountPage } from '../../support/pages/accountPage';
 import { CheckoutPage } from '../../support/pages/checkoutPage';
 import { HeaderComponent } from '../../support/pages/header';
@@ -10,7 +10,7 @@ import { BillingData } from '../../support/types/billingInfo';
 import rawCreditCardData from '../../fixtures/creditCardInfo.json';
 import { CreditCardInfo } from '../../support/types/creditCardInfo';
 import userCredentials from '../../fixtures/userCredentials.json';
-import textHelper from '../../support/helpers/textHelper';
+import aliasHelper from '../../support/helpers/aliasHelper';
 
 const billingAddressData = rawBillingData as BillingData;
 const creditCardData = rawCreditCardData as CreditCardInfo;
@@ -49,7 +49,7 @@ describe('Purchase Flow Tests', () => {
       .clickConfirmButton();
     assert.elementContainingTextIsVisible('Payment was successful');
     checkoutPage.clickConfirmButton();
-    textHelper.saveInvoiceNumberInAliasFromSelector(
+    aliasHelper.saveInvoiceNumberInAliasFromSelector(
       checkoutPageSelectors.orderConfirmation,
     );
     cy.get('[data-test="nav-menu"]').click();

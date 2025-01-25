@@ -1,6 +1,7 @@
 import { LoginPage } from '../../../support/pages/loginPage';
 import userCredentials from '../../../fixtures/userCredentials.json';
-import assert from '../../../support/assertions/pageAssertions';
+import assert from '../../../support/helpers/pageAssertions';
+import { loginMocks } from '../../../support/mocks/loginMocks';
 
 const { pageActions: loginPage } = LoginPage();
 const customerUserEmail = userCredentials.customerUser.email;
@@ -24,5 +25,11 @@ describe('Login Integration Tests', () => {
   it('Should display error messages when email or password are invalid', () => {
     loginPage.loginUI('fakeemail@gmail.com', 'fakepassword');
     assert.elementContainingTextIsVisible('Invalid email or password');
+  });
+
+  it('Should handle server error with correct message', () => {
+    loginMocks.interceptServerError();
+    loginPage.loginUI('customer@domain.com', 'somePassword');
+    assert.elementContainingTextIsVisible('Login failed');
   });
 });
