@@ -6,6 +6,11 @@ export const LoginPage = () => {
   };
 
   const pageActions = {
+    visit() {
+      cy.visit('/auth/login');
+      return pageActions;
+    },
+
     fillEmail(email: string) {
       cy.get(selectors.emailTextBox).type(email);
       return pageActions;

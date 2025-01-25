@@ -1,26 +1,28 @@
+import { LoginPage } from '../../../support/pages/loginPage';
+import userCredentials from '../../../fixtures/userCredentials.json';
+import assert from '../../../support/assertions/pageAssertions';
+
+const { pageActions: loginPage } = LoginPage();
+const customerUserEmail = userCredentials.customerUser.email;
+const customerUserPassword = Cypress.env('CUSTOMERUSER_PASSWORD');
+
 describe('Login Integration Tests', () => {
   beforeEach(() => {
-    cy.visit('/auth/login');
+    loginPage.visit();
   });
   it('Should log in as a customer with valid credentials', () => {
-    cy.get('[data-test="email"]').type('customer@practicesoftwaretesting.com');
-    cy.get('[data-test="password"]').type('welcome01');
-    cy.get('[data-test="login-submit"]').click();
-    cy.url().should('contain', '/account');
+    loginPage.loginUI(customerUserEmail, customerUserPassword);
+    assert.urlShouldContainText('/account');
   });
 
   it('Should display error messages when no email or password is entered', () => {
-    cy.get('[data-test="login-submit"]').click();
-    cy.contains('Email is required').should('be.visible');
-    cy.contains('Password is required').should('be.visible');
+    loginPage.clickSubmitButton();
+    assert.elementContainingTextIsVisible('Email is required');
+    assert.elementContainingTextIsVisible('Password is required');
   });
 
   it('Should display error messages when email or password are invalid', () => {
-    cy.get('[data-test="email"]').type(
-      'fakecustomer@practicesoftwaretesting.com',
-    );
-    cy.get('[data-test="password"]').type('fakepassword');
-    cy.get('[data-test="login-submit"]').click();
-    cy.contains('Invalid email or password').should('be.visible');
+    loginPage.loginUI('fakeemail@gmail.com', 'fakepassword');
+    assert.elementContainingTextIsVisible('Invalid email or password');
   });
 });

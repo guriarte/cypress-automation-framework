@@ -10,6 +10,10 @@ const PageAssertions = {
   elementContainingTextIsVisible: (text: string) => {
     cy.contains(text).should('be.visible');
   },
+
+  urlShouldContainText: (text: string) => {
+    cy.url().should('contain', text);
+  },
 };
 
 export default PageAssertions;
