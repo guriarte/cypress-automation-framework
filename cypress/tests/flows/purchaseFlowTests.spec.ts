@@ -10,6 +10,7 @@ import { BillingData } from '../../support/types/billingInfo';
 import rawCreditCardData from '../../fixtures/creditCardInfo.json';
 import { CreditCardInfo } from '../../support/types/creditCardInfo';
 import userCredentials from '../../fixtures/userCredentials.json';
+import textHelper from '../../support/helpers/textHelper';
 
 const billingAddressData = rawBillingData as BillingData;
 const creditCardData = rawCreditCardData as CreditCardInfo;
@@ -20,7 +21,8 @@ const { pageActions: loginPage } = LoginPage();
 const { pageActions: homePage } = HomePage();
 const { pageActions: productPage } = ProductPage();
 const { selectors: accountPageSelectors } = AccountPage();
-const { pageActions: checkoutPage } = CheckoutPage();
+const { pageActions: checkoutPage, selectors: checkoutPageSelectors } =
+  CheckoutPage();
 
 describe('Purchase Flow Tests', () => {
   it('Purchase Flow Happy Path', () => {
@@ -47,8 +49,11 @@ describe('Purchase Flow Tests', () => {
       .clickConfirmButton();
     assert.elementContainingTextIsVisible('Payment was successful');
     checkoutPage.clickConfirmButton();
-    const invoiceNumber = helper.getInvoiceNumberFromText();
+    textHelper.saveInvoiceNumberInAliasFromSelector(
+      checkoutPageSelectors.orderConfirmation,
+    );
     cy.get('[data-test="nav-menu"]').click();
     cy.get('[data-test="nav-my-invoices"]').click();
+    assert.aliasTextIsPresentInPage('invoiceNumber');
   });
 });

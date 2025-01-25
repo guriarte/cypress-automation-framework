@@ -17,6 +17,7 @@ export const CheckoutPage = () => {
     creditCardExpirationDateTextField: '[data-test="expiration_date"]',
     creditCardCVV: '[data-test="cvv"]',
     creditCardName: '[data-test="card_holder_name"]',
+    orderConfirmation: '#order-confirmation',
   });
 
   const pageActions = {

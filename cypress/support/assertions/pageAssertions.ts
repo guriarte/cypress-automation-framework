@@ -14,6 +14,12 @@ const PageAssertions = {
   urlShouldContainText: (text: string) => {
     cy.url().should('contain', text);
   },
+
+  aliasTextIsPresentInPage: (alias: string) => {
+    cy.get<string>(`@${alias}`).then(text => {
+      cy.contains(text).should('be.visible');
+    });
+  },
 };
 
 export default PageAssertions;
