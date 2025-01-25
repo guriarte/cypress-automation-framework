@@ -1,9 +1,9 @@
 export const LoginPage = () => {
-  const selectors = {
+  const selectors = Object.freeze({
     emailTextBox: '[data-test="email"]',
     passwordTextBox: '[data-test="password"]',
     submitButton: '[data-test="login-submit"]',
-  };
+  });
 
   const pageActions = {
     visit() {

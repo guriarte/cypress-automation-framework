@@ -47,5 +47,8 @@ describe('Purchase Flow Tests', () => {
       .clickConfirmButton();
     assert.elementContainingTextIsVisible('Payment was successful');
     checkoutPage.clickConfirmButton();
+    const invoiceNumber = helper.getInvoiceNumberFromText();
+    cy.get('[data-test="nav-menu"]').click();
+    cy.get('[data-test="nav-my-invoices"]').click();
   });
 });

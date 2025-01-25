@@ -1,8 +1,8 @@
 export const HomePage = () => {
-  const selectors = {
+  const selectors = Object.freeze({
     productSearchInputBox: '[data-test="search-query"]',
     productCard: '[data-test="product-name"]',
-  };
+  });
 
   const pageActions = {
     visit() {

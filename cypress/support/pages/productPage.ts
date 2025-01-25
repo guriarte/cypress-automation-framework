@@ -1,9 +1,9 @@
 export const ProductPage = () => {
-  const selectors = {
+  const selectors = Object.freeze({
     increaseQuantityButton: '[data-test="increase-quantity"]',
     addToCartButton: '[data-test="add-to-cart"]',
-    addedToCartModal: '.ng-trigger'
-  };
+    addedToCartModal: '.ng-trigger',
+  });
 
   const pageActions = {
     clickIncreaseQuantityButton() {

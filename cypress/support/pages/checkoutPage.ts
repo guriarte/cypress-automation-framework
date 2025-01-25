@@ -2,7 +2,7 @@ import { BillingData } from '../types/billingInfo';
 import { CreditCardInfo } from '../types/creditCardInfo';
 
 export const CheckoutPage = () => {
-  const selectors = {
+  const selectors = Object.freeze({
     productTable: 'table > tbody',
     proceedToCheckoutButtonInStepOne: '[data-test="proceed-1"]',
     proceedToCheckoutButtonInStepTwo: '[data-test="proceed-2"]',
@@ -17,7 +17,7 @@ export const CheckoutPage = () => {
     creditCardExpirationDateTextField: '[data-test="expiration_date"]',
     creditCardCVV: '[data-test="cvv"]',
     creditCardName: '[data-test="card_holder_name"]',
-  };
+  });
 
   const pageActions = {
     setQuantityForProduct: (productName: string, quantity: number) => {

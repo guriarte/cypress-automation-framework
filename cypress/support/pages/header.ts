@@ -1,9 +1,9 @@
 export const HeaderComponent = () => {
-  const selectors = {
+  const selectors = Object.freeze({
     signInButton: '[data-test="nav-sign-in"]',
     logoButton: '.navbar-brand',
     shoppingCartButton: '[data-test="nav-cart"]',
-  };
+  });
 
   const pageActions = {
     clickSignInButton: () => {
