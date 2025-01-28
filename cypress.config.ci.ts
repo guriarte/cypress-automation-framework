@@ -10,9 +10,12 @@ module.exports = defineConfig({
       config = dotenvPlugin(config);
       return config;
     },
-    baseUrl: 'http://localhost:4200/',
+    baseUrl: 'https://practicesoftwaretesting.com',
     specPattern: '**/tests/**/*.spec.ts',
     watchForFileChanges: false,
     defaultCommandTimeout: 5000,
+    env: {
+      API_URL: 'https://api.practicesoftwaretesting.com',
+    },
   },
 });

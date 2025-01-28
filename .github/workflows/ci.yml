@@ -25,7 +25,7 @@ jobs:
 
       # Run Cypress tests
       - name: Run Cypress tests
-        run: npx cypress run
+        run: npm run cy:run:ci
 
       #Upload HTML report
       - name: Upload test results
