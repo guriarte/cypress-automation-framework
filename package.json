@@ -1,7 +1,7 @@
 {
   "scripts": {
     "cy:run:local": "npx cypress run --config-file cypress.config.local.ts",
-    "cy:run:ci": "npx cypress run --config-file cypress.config.local.ts"
+    "cy:run:ci": "npx cypress run --config-file cypress.config.ci.ts"
   },
   "devDependencies": {
     "@types/cypress-dotenv": "^2.0.3",
