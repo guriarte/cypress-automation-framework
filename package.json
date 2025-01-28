@@ -1,11 +1,13 @@
 {
   "scripts": {
     "cy:run:local": "npx cypress run --config-file cypress.config.local.ts",
+    "cy:open:local": "npx cypress open --config-file cypress.config.local.ts",
     "cy:run:ci": "npx cypress run --config-file cypress.config.ci.ts"
   },
   "devDependencies": {
     "@types/cypress-dotenv": "^2.0.3",
-    "cypress": "^13.15.2",
+    "@types/node": "^22.12.0",
+    "cypress": "^13.17.0",
     "cypress-dotenv": "^3.0.1",
     "cypress-mochawesome-reporter": "^3.8.2",
     "dotenv": "^16.4.7",

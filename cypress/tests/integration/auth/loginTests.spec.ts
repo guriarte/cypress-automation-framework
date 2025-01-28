@@ -1,6 +1,6 @@
-import { LoginPage } from '../../../support/pages/loginPage';
+import { LoginPage } from '../../../support/pages/page_objects/loginPage';
 import userCredentials from '../../../fixtures/userCredentials.json';
-import assert from '../../../support/helpers/pageAssertions';
+import assert from '../../../support/pages/pageAssertions';
 import { loginMocks } from '../../../support/mocks/loginMocks';
 
 const { pageActions: loginPage } = LoginPage();

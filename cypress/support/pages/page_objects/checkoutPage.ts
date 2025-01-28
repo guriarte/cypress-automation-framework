@@ -1,5 +1,5 @@
-import { BillingData } from '../types/billingInfo';
-import { CreditCardInfo } from '../types/creditCardInfo';
+import { BillingData } from '../../types/billingInfo';
+import { CreditCardInfo } from '../../types/creditCardInfo';
 
 export const CheckoutPage = () => {
   const selectors = Object.freeze({

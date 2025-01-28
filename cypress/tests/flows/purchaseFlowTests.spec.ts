@@ -1,10 +1,10 @@
-import assert from '../../support/helpers/pageAssertions';
-import { AccountPage } from '../../support/pages/accountPage';
-import { CheckoutPage } from '../../support/pages/checkoutPage';
-import { HeaderComponent } from '../../support/pages/header';
-import { HomePage } from '../../support/pages/homePage';
-import { LoginPage } from '../../support/pages/loginPage';
-import { ProductPage } from '../../support/pages/productPage';
+import assert from '../../support/pages/pageAssertions';
+import { AccountPage } from '../../support/pages/page_objects/accountPage';
+import { CheckoutPage } from '../../support/pages/page_objects/checkoutPage';
+import { HeaderComponent } from '../../support/pages/page_objects/header';
+import { HomePage } from '../../support/pages/page_objects/homePage';
+import { LoginPage } from '../../support/pages/page_objects/loginPage';
+import { ProductPage } from '../../support/pages/page_objects/productPage';
 import rawBillingData from '../../fixtures/billingAddress.json';
 import { BillingData } from '../../support/types/billingInfo';
 import rawCreditCardData from '../../fixtures/creditCardInfo.json';
