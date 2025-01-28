@@ -25,6 +25,8 @@ jobs:
 
       # Run Cypress tests
       - name: Run Cypress tests
+        env:
+          CYPRESS_CUSTOMERUSER_PASSWORD: ${{ secrets.CYPRESS_USER_PASSWORD }}
         run: npm run cy:run:ci
 
       #Upload HTML report
