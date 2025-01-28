@@ -65,6 +65,8 @@ Ensure you install the correct versions of Node/NPM to avoid compatibility issue
    ```
 3. No additional setup steps are required.
 
+---
+
 ## Project Structure
 
 - **cypress**
@@ -85,10 +87,14 @@ Ensure you install the correct versions of Node/NPM to avoid compatibility issue
 - **tests/integration**: Shorter, more focused UI tests.
 - **tests/api**: Basic API backend tests.
 
+---
+
 ## Page Objects & Utilities
 
 - Page objects, commands, and utility/helper files are located under **`cypress/support/`**.
 - This folder helps maintain a clean separation between test code and the underlying logic to interact with the application.
+
+---
 
 ## Running Tests
 
@@ -107,10 +113,14 @@ This command runs tests locally on your machine.
 
 Triggered typically within GitHub Actions or any CI server environment.
 
+---
+
 ## Config & Environments
 
 - You can create **different config files** in the project root (e.g., `cypress.config.dev.ts`, `cypress.config.staging.ts`) for various environments.
 - Specify them when running tests by adding `--config-file` or updating your script commands as needed.
+
+---
 
 ## Reporting & Artifacts
 
@@ -118,13 +128,23 @@ Triggered typically within GitHub Actions or any CI server environment.
 - Locally, reports are saved in `cypress/reports`.
 - On GitHub Actions, these reports are **uploaded as artifacts** so you can view them from the CI run summary.
 
+---
+
 ## Continuous Integration
 
 - This project uses **GitHub Actions** for CI.
 - Artifacts (screenshots, videos, test reports) are uploaded to GitHub Actions.
 - Secret environment variables (like passwords) are set in **GitHub Actions secrets** so they aren’t exposed publicly.
 
+---
+
 ## Mocks & Fixtures
 
 - **Fixtures** (static mock data) live in **`cypress/fixtures`**.
 - For **API mocks** or more advanced test data stubs, check the `mocks` folder under `cypress/support`.
+
+---
+
+### Questions or Contributions
+
+If you have any questions or want to suggest improvements, feel free to open an issue or submit a pull request!
