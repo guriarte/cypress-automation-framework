@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  cypress-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Install Node version
+      - name: Use Node 22
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run Cypress tests
+      - name: Run Cypress tests
+        run: npx cypress run
+
+      #Upload HTML report
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-report
+          path: cypress/results/

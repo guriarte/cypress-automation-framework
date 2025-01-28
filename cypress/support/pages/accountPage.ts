@@ -10,11 +10,5 @@ export const AccountPage = () => {
     },
   };
 
-  const gettersAndSetters = {
-    getProfileButton: () => {
-      return selectors.profileButton;
-    },
-  };
-
   return { selectors, pageActions };
 };
