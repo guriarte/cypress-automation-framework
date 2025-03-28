@@ -42,4 +42,8 @@ describe('Homepage Navigation Tests', () => {
       });
     });
   });
+
+  it.skip('Should filter by Price Range', () => {
+    // cannot make the slider work
+  });
 });

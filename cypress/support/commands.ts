@@ -1,29 +1,3 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
 Cypress.Commands.add('itsTextElementsAreInAscendingOrder', { prevSubject: true }, textElements => {
   const textElementsArray = textElements
     .toArray()
@@ -92,13 +66,11 @@ Cypress.Commands.add('verifyDurationIsLessThan', { prevSubject: true }, (prevSub
 
 Cypress.Commands.add('normalizeInterceptResponse', { prevSubject: true }, interception => {
   const normalizedResponse = {
-    body: interception.response.body, // Standardize the body (same as request response)
-    headers: interception.response.headers, // Standardize headers
-    status: interception.response.statusCode, // Map statusCode to status
-    statusText: interception.response.statusMessage, // Map statusMessage to statusText
+    body: interception.response.body,
+    headers: interception.response.headers,
+    status: interception.response.statusCode,
+    statusText: interception.response.statusMessage,
   };
-
-  // Return the normalized response so it can be chained
   cy.wrap(normalizedResponse);
 });
 

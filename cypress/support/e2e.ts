@@ -15,7 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands';
-import '../support/commands/api/purchaseCartApi.ts';
+import '../support/commands/loginCommands.ts';
 import 'cypress-mochawesome-reporter/register';
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
