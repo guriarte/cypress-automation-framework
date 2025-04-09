@@ -1,4 +1,4 @@
-import { loginPageSelectors } from '../selectors/loginPageSelectors';
+import { loginPageSelectors } from '../../selectors/loginPageSelectors';
 
 Cypress.Commands.add('loginUI', (email: string, password: string) => {
   cy.get(loginPageSelectors.emailTextBox).type(email);

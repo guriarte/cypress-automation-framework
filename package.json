@@ -5,6 +5,7 @@
     "cy:run:ci": "npx cypress run --config-file cypress.config.ci.ts"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.14.0",
     "@types/cypress-dotenv": "^2.0.3",
     "@types/node": "^22.12.0",
     "chai-json-schema": "^1.5.1",
