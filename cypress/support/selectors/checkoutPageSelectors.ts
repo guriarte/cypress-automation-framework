@@ -1,0 +1,15 @@
+export const checkoutPageSelectors = {
+  quantityTextBox: '[data-test="product-quantity"]',
+  proceedButton: '[data-test^="proceed-"]',
+  addressTextBox: '[data-test="address"]',
+  cityTextBox: '[data-test="city"]',
+  stateTextBox: '[data-test="state"]',
+  countryTextBox: '[data-test="country"]',
+  postCodeTextBox: '[data-test="postcode"]',
+  paymentMethodDropdown: '[data-test="payment-method"]',
+  creditCardNumberTextBox: '[data-test="credit_card_number"]',
+  creditCardExpirationDateTextBox: '[data-test="expiration_date"]',
+  creditCardCVVTextBox: '[data-test="cvv"]',
+  creditCardHolderNameTextBox: '[data-test="card_holder_name"]',
+  finishButton: '[data-test="finish"]',
+};

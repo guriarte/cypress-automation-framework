@@ -16,8 +16,11 @@
 // Import commands.js using ES2015 syntax:
 import './commands';
 import './commands/actions/loginCommands';
+import './commands/actions/checkoutCommands';
 import 'cypress-mochawesome-reporter/register';
 import '@cypress/code-coverage/support';
+import '@4tw/cypress-drag-drop';
+import 'cypress-real-events';
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 chai.use(require('chai-json-schema'));
